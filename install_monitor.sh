@@ -10,8 +10,8 @@ sudo apt update
 sudo apt install -y python3 python3-pip git
 
 # 克隆代码
-echo "[INFO] Cloning from GitHub..."
 MONITOR_DIR="/opt/worker-monitor"
+echo "[INFO] Cloning worker-monitor to $MONITOR_DIR..."
 sudo rm -rf "$MONITOR_DIR"
 sudo git clone https://github.com/TJKkking/worker-monitor.git "$MONITOR_DIR"
 cd "$MONITOR_DIR"
