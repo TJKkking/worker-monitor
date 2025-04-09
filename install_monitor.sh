@@ -23,13 +23,19 @@ if [ ! -f "peers.txt" ]; then
   exit 1
 fi
 
-# 创建 venv 虚拟环境
+# 确保系统支持 venv
+sudo apt install -y python3-venv
+
+# 创建虚拟环境
 echo "[INFO] Creating virtual environment..."
-python3 -m venv venv
+sudo python3 -m venv venv || {
+    echo "[ERROR] Failed to create virtual environment. Aborting."
+    exit 1
+}
 
 # 安装依赖
 echo "[INFO] Installing Python dependencies..."
-./venv/bin/pip install -r requirements.txt
+sudo ./venv/bin/pip install -r requirements.txt
 
 # 创建 systemd 服务文件
 echo "[INFO] Creating systemd service..."

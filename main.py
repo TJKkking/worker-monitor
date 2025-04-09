@@ -12,6 +12,8 @@ app = FastAPI()
 # ------------------- Config --------------------
 NODE_NAME = socket.gethostname()
 
+ping3.udp = True
+
 def load_peer_nodes(filepath="peers.txt") -> list[str]:
     try:
         with open(filepath, "r") as f:
@@ -36,6 +38,7 @@ net_lock = threading.Lock()
 
 def sample_cpu():
     global cpu_usage
+    psutil.cpu_percent(interval=None)  # warm up
     while True:
         cpu_usage = psutil.cpu_percent(interval=1) / 100
 
