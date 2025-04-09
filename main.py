@@ -12,6 +12,8 @@ app = FastAPI()
 # ------------------- Config --------------------
 NODE_NAME = socket.gethostname()
 
+# PING3 fix
+ping3.EXCEPTIONS = True
 ping3.udp = True
 
 def load_peer_nodes(filepath="peers.txt") -> list[str]:
@@ -38,7 +40,7 @@ net_lock = threading.Lock()
 
 def sample_cpu():
     global cpu_usage
-    psutil.cpu_percent(interval=None)  # warm up
+    psutil.cpu_percent(interval=None)
     while True:
         cpu_usage = psutil.cpu_percent(interval=1) / 100
 
@@ -66,6 +68,20 @@ def sample_net():
         time.sleep(1)
 
 
+# def sample_latency():
+#     global latency_map
+#     while True:
+#         peer_nodes = load_peer_nodes()
+#         results = {}
+#         for peer in peer_nodes:
+#             try:
+#                 delay = ping3.ping(peer, timeout=1)
+#                 results[peer] = round(delay * 1000, 2) if delay else None
+#             except Exception:
+#                 results[peer] = None
+#         latency_map = results
+#         time.sleep(5)
+
 def sample_latency():
     global latency_map
     while True:
@@ -74,8 +90,10 @@ def sample_latency():
         for peer in peer_nodes:
             try:
                 delay = ping3.ping(peer, timeout=1)
+                print(f"[DEBUG] Ping {peer} = {delay}")
                 results[peer] = round(delay * 1000, 2) if delay else None
-            except Exception:
+            except Exception as e:
+                print(f"[ERROR] Ping {peer} failed: {e}")
                 results[peer] = None
         latency_map = results
         time.sleep(5)
