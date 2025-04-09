@@ -13,7 +13,7 @@ sudo apt install -y python3 python3-pip git
 echo "[INFO] Cloning from GitHub..."
 MONITOR_DIR="/opt/worker-monitor"
 sudo rm -rf "$MONITOR_DIR"
-sudo git clone https://github.com/tjkkking/worker-monitor.git "$MONITOR_DIR"
+sudo git clone https://github.com/TJKkking/worker-monitor.git "$MONITOR_DIR"
 cd "$MONITOR_DIR"
 
 # 检查 peers.txt 是否存在

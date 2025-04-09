@@ -36,7 +36,7 @@
 ### 2️⃣ 一键安装（建议在每个工作节点执行）
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/tjkkking/worker-monitor/master/install_monitor.sh | bash
+curl -fsSL https://raw.githubusercontent.com/TJKkking/worker-monitor/master/install_monitor.sh | bash
 ```
 
 > 📌 需要预先确保 `peers.txt` 已存在于仓库中。
@@ -126,4 +126,4 @@ worker-monitor/
 
 ## 📄 License
 
-MIT License © 2024 [tjkkking](https://github.com/tjkkking)
+MIT License © 2024 [TJKkking](https://github.com/TJKkking)
